@@ -22,4 +22,4 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 
 ## License
 
-This extension is developed and designed by #### Oussama Roui CEO and founder of Bitcode.
+This extension is developed and designed by **Oussama Roui CEO and founder of Bitcode**.
