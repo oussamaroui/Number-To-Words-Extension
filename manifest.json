@@ -1,0 +1,21 @@
+{
+    "name": "Number To Words",
+    "description": "Convert any number on the page into words.",
+    "version": "1.0",
+    "manifest_version": 3,
+    "icons": {
+        "16": "./extensionIcon.png",
+        "48": "./extensionIcon.png",
+        "128": "./extensionIcon.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "app.js"
+            ]
+        }
+    ]
+}
