@@ -45,28 +45,29 @@ function convertNumbersToWords() {
     // Loop through each text node
     for (let i = 0; i < textNodes.snapshotLength; i++) {
         const currentNode = textNodes.snapshotItem(i);
-        const parentNode = currentNode.parentNode;
 
         // Split text node into smaller parts separated by numbers
         const parts = currentNode.textContent.split(/(-?\d+)/g);
 
+        // Create a document fragment to hold the processed content
+        const fragment = document.createDocumentFragment();
+
         // Process each part
-        const processedParts = parts.map(part => {
+        parts.forEach(part => {
             if (/^-?\d+$/.test(part)) {
                 const wordRepresentation = numberToWords(parseInt(part));
-                // Wrap the number with its word representation in a span element
-                return `${part} <b>(${wordRepresentation})</b>`;
+                // Create a <b> element to wrap the number and its word representation
+                const boldElement = document.createElement('b');
+                boldElement.textContent = `${part} (${wordRepresentation})`;
+                fragment.appendChild(boldElement);
             } else {
-                return part;
+                // Create a text node for non-numeric parts
+                fragment.appendChild(document.createTextNode(part));
             }
         });
 
-        // Create a new div to hold the modified content
-        const newDiv = document.createElement('span');
-        newDiv.innerHTML = processedParts.join('');
-
-        // Replace the original text node with the modified content
-        parentNode.replaceChild(newDiv, currentNode);
+        // Replace the original text node with the processed content
+        currentNode.parentNode.replaceChild(fragment, currentNode);
     }
 }
 
